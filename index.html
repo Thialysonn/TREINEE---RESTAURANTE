@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAPE - Instituto Adventista Pernambucano de Ensino</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .masonry {
+            column-count: 2;
+            column-gap: 1rem;
+        }
+        @media (min-width: 768px) {
+            .masonry {
+                column-count: 3;
+            }
+        }
+        .masonry img {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            transition: filter 0.3s ease;
+        }
+        .masonry img:hover {
+            filter: brightness(1.2);
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .error {
+            border: 2px solid red;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #3b82f6;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            display: none;
+        }
+        .back-to-top.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-gradient-to-r from-blue-800 to-blue-600 text-white shadow-lg z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://example.com/iape-logo.png" alt="IAPE Logo" class="h-12 mr-4">
+                <h1 class="text-2xl font-bold">IAPE</h1>
+            </div>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#home" class="hover:text-blue-300">Início</a></li>
+                    <li><a href="#about" class="hover:text-blue-300">Sobre</a></li>
+                    <li><a href="#gallery" class="hover:text-blue-300">Galeria</a></li>
+                    <li><a href="#contact" class="hover:text-blue-300">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main class="pt-24">
+        <!-- Three-Column Section (About) -->
+        <section id="about" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8 fade-in">Sobre o IAPE</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card bg-gray-800 p-6 rounded-lg fade-in">
+                        <img src="https://example.com/academics.jpg" alt="Academics" class="w-full h-48 object-cover rounded mb-4">
+                        <h3 class="text-xl font-semibold mb-2">Excelência Acadêmica</h3>
+                        <p class="text-base">Currículo inovador com professores altamente qualificados.</p>
+                    </div>
+                    <div class="card bg-gray-800 p-6 rounded-lg fade-in">
+                        <img src="https://example.com/sports.jpg" alt="Sports" class="w-full h-48 object-cover rounded mb-4">
+                        <h3 class="text-xl font-semibold mb-2">Esportes</h3>
+                        <p class="text-base">Programas que promovem saúde e trabalho em equipe.</p>
+                    </div>
+                    <div class="card bg-gray-800 p-6 rounded-lg fade-in">
+                        <img src="https://example.com/community.jpg" alt="Community" class="w-full h-48 object-cover rounded mb-4">
+                        <h3 class="text-xl font-semibold mb-2">Comunidade</h3>
+                        <p class="text-base">Projetos que desenvolvem valores e cidadania.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Mosaic (Gallery) -->
+        <section id="gallery" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8 fade-in">Galeria de Fotos</h2>
+                <div class="masonry">
+                    <div class="fade-in">
+                        <img src="https://example.com/photo1.jpg" alt="Event 1" class="w-full rounded">
+                        <p class="text-sm text-center mt-2">Evento Cultural</p>
+                    </div>
+                    <div class="fade-in">
+                        <img src="https://example.com/photo2.jpg" alt="Event 2" class="w-full rounded">
+                        <p class="text-sm text-center mt-2">Feira de Ciências</p>
+                    </div>
+                    <div class="fade-in">
+                        <img src="https://example.com/photo3.jpg" alt="Event 3" class="w-full rounded">
+                        <p class="text-sm text-center mt-2">Dia Esportivo</p>
+                    </div>
+                    <div class="fade-in">
+                        <img src="https://example.com/photo4.jpg" alt="Event 4" class="w-full rounded">
+                        <p class="text-sm text-center mt-2">Aula ao Ar Livre</p>
+                    </div>
+                    <div class="fade-in">
+                        <img src="https://example.com/photo5.jpg" alt="Event 5" class="w-full rounded">
+                        <p class="text-sm text-center mt-2">Formatura</p>
+                    </div>
+                    <div class="fade-in">
+                        <img src="https://example.com/photo6.jpg" alt="Event 6" class="w-full rounded">
+                        <p class="text-sm text-center mt-2">Projeto Social</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8 fade-in">Entre em Contato</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="fade-in">
+                        <h3 class="text-xl font-semibold mb-4">Formulário de Contato</h3>
+                        <div>
+                            <label for="name" class="block text-lg mb-2">Nome</label>
+                            <input type="text" id="name" class="w-full p-2 bg-gray-800 text-white rounded mb-4" placeholder="Seu nome">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-lg mb-2">E-mail</label>
+                            <input type="email" id="email" class="w-full p-2 bg-gray-800 text-white rounded mb-4" placeholder="Seu e-mail">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-lg mb-2">Mensagem</label>
+                            <textarea id="message" class="w-full p-2 bg-gray-800 text-white rounded mb-4" rows="4" placeholder="Sua mensagem"></textarea>
+                        </div>
+                        <button onclick="sendWhatsApp()" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">Enviar via WhatsApp</button>
+                        <p id="form-message" class="text-green-400 mt-2 hidden">Mensagem enviada com sucesso!</p>
+                    </div>
+                    <div class="fade-in">
+                        <h3 class="text-xl font-semibold mb-4">Informações de Contato</h3>
+                        <p class="text-base mb-2">Telefone: (84) 98853-2592</p>
+                        <p class="text-base mb-2">E-mail: contato@iape.edu.br</p>
+                        <p class="text-base">Endereço: BR 232 KM 91, CEP 55.695-000</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-blue-900">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-in">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">IAPE</h3>
+                    <p class="text-base">José Keyvison</p>
+                    <p class="text-base">BR 232 KM 91, CEP 55.695-000</p>
+                    <p class="text-base"><a href="https://www.iape.edu.br" class="underline hover:text-blue-300">Visite nosso site</a></p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Siga-nos</h3>
+                    <p class="text-base"><a href="#" class="underline hover:text-blue-300">Facebook</a></p>
+                    <p class="text-base"><a href="#" class="underline hover:text-blue-300">Instagram</a></p>
+                    <p class="text-base"><a href="#" class="underline hover:text-blue-300">Twitter</a></p>
+                </div>
+            </div>
+            <button id="back-to-top" class="back-to-top">↑</button>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // WhatsApp message function with validation
+        function sendWhatsApp() {
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const message = document.getElementById('message');
+            const formMessage = document.getElementById('form-message');
+
+            [name, message].forEach(input => {
+                if (!input.value) {
+                    input.classList.add('error');
+                } else {
+                    input.classList.remove('error');
+                }
+            });
+
+            if (!name.value || !message.value) {
+                alert('Por favor, preencha o nome e a mensagem.');
+                return;
+            }
+
+            const phoneNumber = '5584988532592';
+            const text = `Olá, meu nome é ${name.value}. E-mail: ${email.value || 'Não informado'}. ${message.value}`;
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+            formMessage.classList.remove('hidden');
+            setTimeout(() => formMessage.classList.add('hidden'), 3000);
+            window.open(url, '_blank');
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Back to Top button
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
