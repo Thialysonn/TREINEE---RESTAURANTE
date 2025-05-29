@@ -1,3 +1,4 @@
+DOCTYPE html>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -15,39 +16,71 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .masonry {
-            column-count: 2;
-            column-gap: 1rem;
+        .texture-mosaic {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            padding: 2rem;
         }
-        @media (min-width: 768px) {
-            .masonry {
-                column-count: 3;
-            }
+        .texture-mosaic .photo {
+            position: relative;
+            border: 2px solid #B91C1C;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .masonry img {
-            break-inside: avoid;
-            margin-bottom: 1rem;
+        .texture-mosaic .photo img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
             transition: filter 0.3s ease;
         }
-        .masonry img:hover {
-            filter: brightness(1.2);
+        .texture-mosaic .photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100" height="100" filter="url(%23noiseFilter)" opacity="0.3"/%3E%3C/svg%3E');
+            opacity: 0.3;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .texture-mosaic .photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+        .texture-mosaic .photo:hover::before {
+            opacity: 0.5;
+        }
+        .texture-mosaic .photo:hover img {
+            filter: brightness(1.1) hue-rotate(340deg);
+        }
+        @media (max-width: 768px) {
+            .texture-mosaic {
+                grid-template-columns: 1fr;
+            }
         }
         .card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #B91C1C;
         }
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
         .error {
-            border: 2px solid red;
+            border: 2px solid #B91C1C;
         }
         .back-to-top {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #3b82f6;
-            color: white;
+            background-color: #B91C1C;
+            color: #FFFFFF;
             padding: 10px 15px;
             border-radius: 50%;
             display: none;
@@ -57,9 +90,9 @@
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white font-sans">
+<body class="bg-black text-white font-sans">
     <!-- Header -->
-    <header class="fixed top-0 w-full bg-gradient-to-r from-blue-800 to-blue-600 text-white shadow-lg z-10">
+    <header class="fixed top-0 w-full bg-gradient-to-r from-black to-red-700 text-white shadow-lg z-10">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
                 <img src="https://example.com/iape-logo.png" alt="IAPE Logo" class="h-12 mr-4">
@@ -67,10 +100,10 @@
             </div>
             <nav>
                 <ul class="flex space-x-6">
-                    <li><a href="#home" class="hover:text-blue-300">Início</a></li>
-                    <li><a href="#about" class="hover:text-blue-300">Sobre</a></li>
-                    <li><a href="#gallery" class="hover:text-blue-300">Galeria</a></li>
-                    <li><a href="#contact" class="hover:text-blue-300">Contato</a></li>
+                    <li><a href="#home" class="hover:text-red-700">Início</a></li>
+                    <li><a href="#about" class="hover:text-red-700">Sobre</a></li>
+                    <li><a href="#gallery" class="hover:text-red-700">Galeria</a></li>
+                    <li><a href="#contact" class="hover:text-red-700">Contato</a></li>
                 </ul>
             </nav>
         </div>
@@ -81,55 +114,55 @@
         <!-- Three-Column Section (About) -->
         <section id="about" class="py-16">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-8 fade-in">Sobre o IAPE</h2>
+                <h2 class="text-3xl font-bold text-center mb-8 fade-in text-white">Sobre o IAPE</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="card bg-gray-800 p-6 rounded-lg fade-in">
+                    <div class="card bg-black p-6 rounded-lg fade-in">
                         <img src="https://example.com/academics.jpg" alt="Academics" class="w-full h-48 object-cover rounded mb-4">
-                        <h3 class="text-xl font-semibold mb-2">Excelência Acadêmica</h3>
-                        <p class="text-base">Currículo inovador com professores altamente qualificados.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-white">Excelência Acadêmica</h3>
+                        <p class="text-base text-white">Currículo inovador com professores altamente qualificados.</p>
                     </div>
-                    <div class="card bg-gray-800 p-6 rounded-lg fade-in">
+                    <div class="card bg-black p-6 rounded-lg fade-in">
                         <img src="https://example.com/sports.jpg" alt="Sports" class="w-full h-48 object-cover rounded mb-4">
-                        <h3 class="text-xl font-semibold mb-2">Esportes</h3>
-                        <p class="text-base">Programas que promovem saúde e trabalho em equipe.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-white">Esportes</h3>
+                        <p class="text-base text-white">Programas que promovem saúde e trabalho em equipe.</p>
                     </div>
-                    <div class="card bg-gray-800 p-6 rounded-lg fade-in">
+                    <div class="card bg-black p-6 rounded-lg fade-in">
                         <img src="https://example.com/community.jpg" alt="Community" class="w-full h-48 object-cover rounded mb-4">
-                        <h3 class="text-xl font-semibold mb-2">Comunidade</h3>
-                        <p class="text-base">Projetos que desenvolvem valores e cidadania.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-white">Comunidade</h3>
+                        <p class="text-base text-white">Projetos que desenvolvem valores e cidadania.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Photo Mosaic (Gallery) -->
-        <section id="gallery" class="py-16">
+        <section id="gallery" class="py-16 bg-black">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-8 fade-in">Galeria de Fotos</h2>
-                <div class="masonry">
-                    <div class="fade-in">
-                        <img src="https://example.com/photo1.jpg" alt="Event 1" class="w-full rounded">
-                        <p class="text-sm text-center mt-2">Evento Cultural</p>
+                <h2 class="text-3xl font-bold text-center mb-8 fade-in text-white">Galeria de Fotos</h2>
+                <div class="texture-mosaic">
+                    <div class="photo fade-in">
+                        <img src="https://example.com/photo1.jpg" alt="Event 1">
+                        <p class="text-sm text-center mt-2 text-white">Evento Cultural</p>
                     </div>
-                    <div class="fade-in">
-                        <img src="https://example.com/photo2.jpg" alt="Event 2" class="w-full rounded">
-                        <p class="text-sm text-center mt-2">Feira de Ciências</p>
+                    <div class="photo fade-in">
+                        <img src="https://example.com/photo2.jpg" alt="Event 2">
+                        <p class="text-sm text-center mt-2 text-white">Feira de Ciências</p>
                     </div>
-                    <div class="fade-in">
-                        <img src="https://example.com/photo3.jpg" alt="Event 3" class="w-full rounded">
-                        <p class="text-sm text-center mt-2">Dia Esportivo</p>
+                    <div class="photo fade-in">
+                        <img src="https://example.com/photo3.jpg" alt="Event 3">
+                        <p class="text-sm text-center mt-2 text-white">Dia Esportivo</p>
                     </div>
-                    <div class="fade-in">
-                        <img src="https://example.com/photo4.jpg" alt="Event 4" class="w-full rounded">
-                        <p class="text-sm text-center mt-2">Aula ao Ar Livre</p>
+                    <div class="photo fade-in">
+                        <img src="https://example.com/photo4.jpg" alt="Event 4">
+                        <p class="text-sm text-center mt-2 text-white">Aula ao Ar Livre</p>
                     </div>
-                    <div class="fade-in">
-                        <img src="https://example.com/photo5.jpg" alt="Event 5" class="w-full rounded">
-                        <p class="text-sm text-center mt-2">Formatura</p>
+                    <div class="photo fade-in">
+                        <img src="https://example.com/photo5.jpg" alt="Event 5">
+                        <p class="text-sm text-center mt-2 text-white">Formatura</p>
                     </div>
-                    <div class="fade-in">
-                        <img src="https://example.com/photo6.jpg" alt="Event 6" class="w-full rounded">
-                        <p class="text-sm text-center mt-2">Projeto Social</p>
+                    <div class="photo fade-in">
+                        <img src="https://example.com/photo6.jpg" alt="Event 6">
+                        <p class="text-sm text-center mt-2 text-white">Projeto Social</p>
                     </div>
                 </div>
             </div>
@@ -138,30 +171,30 @@
         <!-- Contact Section -->
         <section id="contact" class="py-16">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-8 fade-in">Entre em Contato</h2>
+                <h2 class="text-3xl font-bold text-center mb-8 fade-in text-white">Entre em Contato</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                     <div class="fade-in">
-                        <h3 class="text-xl font-semibold mb-4">Formulário de Contato</h3>
+                        <h3 class="text-xl font-semibold mb-4 text-white">Formulário de Contato</h3>
                         <div>
-                            <label for="name" class="block text-lg mb-2">Nome</label>
-                            <input type="text" id="name" class="w-full p-2 bg-gray-800 text-white rounded mb-4" placeholder="Seu nome">
+                            <label for="name" class="block text-lg mb-2 text-white">Nome</label>
+                            <input type="text" id="name" class="w-full p-2 bg-black text-white rounded mb-4 border border-red-700" placeholder="Seu nome">
                         </div>
                         <div>
-                            <label for="email" class="block text-lg mb-2">E-mail</label>
-                            <input type="email" id="email" class="w-full p-2 bg-gray-800 text-white rounded mb-4" placeholder="Seu e-mail">
+                            <label for="email" class="block text-lg mb-2 text-white">E-mail</label>
+                            <input type="email" id="email" class="w-full p-2 bg-black text-white rounded mb-4 border border-red-700" placeholder="Seu e-mail">
                         </div>
                         <div>
-                            <label for="message" class="block text-lg mb-2">Mensagem</label>
-                            <textarea id="message" class="w-full p-2 bg-gray-800 text-white rounded mb-4" rows="4" placeholder="Sua mensagem"></textarea>
+                            <label for="message" class="block text-lg mb-2 text-white">Mensagem</label>
+                            <textarea id="message" class="w-full p-2 bg-black text-white rounded mb-4 border border-red-700" rows="4" placeholder="Sua mensagem"></textarea>
                         </div>
-                        <button onclick="sendWhatsApp()" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">Enviar via WhatsApp</button>
-                        <p id="form-message" class="text-green-400 mt-2 hidden">Mensagem enviada com sucesso!</p>
+                        <button onclick="sendWhatsApp()" class="bg-red-700 text-white px-6 py-2 rounded hover:bg-white hover:text-red-700 border hover:border-red-700">Enviar via WhatsApp</button>
+                        <p id="form-message" class="text-red-700 mt-2 hidden">Mensagem enviada com sucesso!</p>
                     </div>
                     <div class="fade-in">
-                        <h3 class="text-xl font-semibold mb-4">Informações de Contato</h3>
-                        <p class="text-base mb-2">Telefone: (84) 98853-2592</p>
-                        <p class="text-base mb-2">E-mail: contato@iape.edu.br</p>
-                        <p class="text-base">Endereço: BR 232 KM 91, CEP 55.695-000</p>
+                        <h3 class="text-xl font-semibold mb-4 text-white">Informações de Contato</h3>
+                        <p class="text-base mb-2 text-white">Telefone: (84) 98853-2592</p>
+                        <p class="text-base mb-2 text-white">E-mail: contato@iape.edu.br</p>
+                        <p class="text-base text-white">Endereço: BR 232 KM 91, CEP 55.695-000</p>
                     </div>
                 </div>
             </div>
@@ -169,20 +202,20 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-8 bg-blue-900">
+    <footer class="py-8 bg-red-700">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-in">
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">IAPE</h3>
-                    <p class="text-base">José Keyvison</p>
-                    <p class="text-base">BR 232 KM 91, CEP 55.695-000</p>
-                    <p class="text-base"><a href="https://www.iape.edu.br" class="underline hover:text-blue-300">Visite nosso site</a></p>
+                    <h3 class="text-xl font-semibold mb-4 text-white">IAPE</h3>
+                    <p class="text-base text-white">José Keyvison</p>
+                    <p class="text-base text-white">BR 232 KM 91, CEP 55.695-000</p>
+                    <p class="text-base text-white"><a href="https://www.iape.edu.br" class="underline hover:text-red-700">Visite nosso site</a></p>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">Siga-nos</h3>
-                    <p class="text-base"><a href="#" class="underline hover:text-blue-300">Facebook</a></p>
-                    <p class="text-base"><a href="#" class="underline hover:text-blue-300">Instagram</a></p>
-                    <p class="text-base"><a href="#" class="underline hover:text-blue-300">Twitter</a></p>
+                    <h3 class="text-xl font-semibold mb-4 text-white">Siga-nos</h3>
+                    <p class="text-base text-white"><a href="#" class="underline hover:text-red-700">Facebook</a></p>
+                    <p class="text-base text-white"><a href="#" class="underline hover:text-red-700">Instagram</a></p>
+                    <p class="text-base text-white"><a href="#" class="underline hover:text-red-700">Twitter</a></p>
                 </div>
             </div>
             <button id="back-to-top" class="back-to-top">↑</button>
